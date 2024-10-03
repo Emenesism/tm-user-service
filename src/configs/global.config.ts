@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const globallConfig: any = {
-  env: process.env.NODE_ENV,
+  jwt_secret: process.env.JWT_SECRET,
   db: {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
