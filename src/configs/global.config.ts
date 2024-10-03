@@ -9,6 +9,7 @@ const globallConfig: any = {
     port: process.env.DB_PORT,
     name: process.env.DB_NAME,
     user: process.env.DB_USER,
+    dialect: process.env.DB_DIALECT,
     pass: process.env.DB_PASS,
   },
   server: {
