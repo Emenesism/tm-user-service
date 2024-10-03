@@ -5,23 +5,26 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './modules/user/entities/user.entity';
+import globallConfig from './configs/global.config';
+
+console.log(globallConfig);
 
 @Module({
   imports: [
     UserModule,
     AuthModule,
     TypeOrmModule.forRoot({
-      type: process.env.DB_DIALECT as
+      type: globallConfig.db.dialect as
         | 'mysql'
         | 'postgres'
         | 'mariadb'
         | 'sqlite'
         | 'mongodb',
-      host: process.env.MYSQL_DB_HOST,
-      port: +process.env.MYSQL_DB_PORT,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
+      host: globallConfig.db.host,
+      port: +globallConfig.db.port,
+      username: globallConfig.db.user,
+      password: globallConfig.db.pass,
+      database: globallConfig.db.name,
       synchronize: true,
       entities: [User],
     }),
