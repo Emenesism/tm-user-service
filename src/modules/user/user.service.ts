@@ -74,7 +74,7 @@ export class UsersService {
       };
     }
 
-    const payload: object = { userId: user.data.id };
+    const payload: object = { userId: user.data.uuid };
 
     const token: string = await this.JWTService.signAsync(payload);
 
