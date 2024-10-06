@@ -16,4 +16,15 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: any) {
     return { userId: payload.userId };
   }
+  public async validateJwt(token: string): Promise<boolean> {
+    try {
+      // This will throw an error if the JWT is invalid
+      const payload = this.jwtService.verify(token, {
+        secret: globallConfig.jwt_secret, // You can use globallConfig.jwt_secret here
+      });
+      return !!payload; // Return true if valid
+    } catch (error) {
+      return false; // Invalid JWT
+    }
+  }
 }
